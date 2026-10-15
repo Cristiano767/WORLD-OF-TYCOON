@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#070b17">
+<title>WORLD OF TYCOON — Digital Empire</title>
+<style>
+:root{color-scheme:dark;--bg:#070b17;--panel:#10182b;--panel2:#141f36;--line:#2a3a5b;--cyan:#63f5e3;--blue:#6da8ff;--purple:#b18cff;--gold:#ffd779;--pink:#ff78bd;--text:#eff6ff;--muted:#9aaac6}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% -15%,#203b70 0,transparent 48%),radial-gradient(ellipse at 100% 55%,#26144855 0,transparent 35%),var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.12;background-image:linear-gradient(#6da8ff14 1px,transparent 1px),linear-gradient(90deg,#6da8ff14 1px,transparent 1px);background-size:38px 38px;mask-image:linear-gradient(to bottom,#000,transparent 85%)}
+header{position:relative;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:25px max(4vw,18px) 19px;border-bottom:1px solid #6da8ff30;background:#070b17aa;backdrop-filter:blur(16px)}
+.brand{font-size:clamp(1.25rem,3.2vw,2.15rem);font-weight:950;letter-spacing:.08em}.brand span{color:var(--cyan);text-shadow:0 0 22px #63f5e377}
+.tag{font-size:.7rem;letter-spacing:.13em;color:var(--cyan);border:1px solid #63f5e355;padding:8px 11px;border-radius:999px;background:#63f5e30b}
+.social-links{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.social-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 14px;border-radius:999px;text-decoration:none;font-size:.78rem;font-weight:800;letter-spacing:.02em;border:1px solid #ffffff25;color:var(--text);background:#ffffff08;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+.social-btn:hover{transform:translateY(-2px);box-shadow:0 7px 24px #0005}
+.social-btn.tiktok{border-color:#63f5e355;background:linear-gradient(120deg,#63f5e315,#ff78bd12)}
+.social-btn.instagram{border-color:#b18cff66;background:linear-gradient(120deg,#b18cff20,#ff78bd18)}
+.social-btn .social-icon{font-size:1rem}
+@media(max-width:600px){header{align-items:flex-start}.social-links{width:100%}.social-btn{flex:1}}
+
+.wrap{width:min(1240px,94vw);margin:auto;position:relative}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px;margin:20px auto 16px}
+.stat,.panel{background:linear-gradient(145deg,#141f36eF,#0d1426f2);border:1px solid var(--line);border-radius:16px;box-shadow:0 16px 45px #0002}
+.stat{padding:15px;min-width:0}.stat small{display:block;color:var(--muted);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase}.stat strong{display:block;color:var(--cyan);font-size:clamp(1.1rem,2.6vw,1.6rem);margin-top:7px;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+main{display:grid;grid-template-columns:minmax(0,1.04fr) minmax(0,.96fr);gap:16px;margin-bottom:30px}
+.panel{padding:20px;min-width:0}.panelhead{display:flex;align-items:center;justify-content:space-between;gap:12px}.eyebrow{color:var(--purple);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase}h2{font-size:1.05rem;margin:5px 0 0;letter-spacing:.02em}.muted{color:var(--muted);font-size:.85rem;line-height:1.55}
+.world{height:315px;position:relative;display:grid;place-items:center;overflow:hidden;margin:17px 0;border:1px solid #42618b66;border-radius:14px;background:radial-gradient(ellipse at center,#1b3a5b 0,#111c36 39%,#0b1121 72%);isolation:isolate}
+.world:before,.world:after{content:"";position:absolute;left:50%;top:50%;width:210px;height:210px;border:1px solid #63f5e344;border-radius:50%;transform:translate(-50%,-50%);animation:orbit 18s linear infinite;box-shadow:0 0 30px #63f5e30a}
+.world:after{width:275px;height:275px;border-color:#b18cff35;animation-duration:27s;animation-direction:reverse}
+.ring{position:absolute;width:340px;height:110px;border:1px solid #6da8ff55;border-radius:50%;transform:rotate(-24deg);animation:ringFloat 7s ease-in-out infinite}
+.corebutton{position:relative;z-index:2;width:126px;height:126px;border-radius:38% 52% 42% 55%;border:1px solid #c7fff8;background:radial-gradient(circle at 32% 26%,#fff 0,#bffff5 8%,#63f5e3 22%,#2685b4 50%,#182d58 76%);box-shadow:0 0 24px #63f5e388,0 0 65px #43b6ff55,inset -10px -14px 25px #07132e88;cursor:pointer;font-size:2.5rem;transition:filter .15s;animation:breathe 4s ease-in-out infinite;will-change:transform}
+.corebutton:hover{filter:brightness(1.17)}.corebutton:active{filter:brightness(1.5)}
+@keyframes orbit{to{transform:translate(-50%,-50%) rotate(360deg)}}@keyframes ringFloat{50%{transform:rotate(-15deg) scale(1.07);opacity:.65}}@keyframes breathe{0%,100%{transform:scale(1) rotate(-2deg);border-radius:38% 52% 42% 55%}50%{transform:scale(1.045) rotate(3deg);border-radius:50% 38% 55% 44%}}
+.worldlabel{position:absolute;bottom:15px;left:15px;right:15px;display:flex;justify-content:space-between;color:#9bb4d9;font-size:.68rem;letter-spacing:.1em;z-index:3;gap:8px}
+#floatLayer{position:absolute;inset:0;z-index:5;pointer-events:none;overflow:hidden}.float{position:absolute;color:var(--cyan);font-weight:850;text-shadow:0 0 14px #63f5e399;animation:floatup .8s ease-out forwards;white-space:nowrap;will-change:transform,opacity}.float.crit{color:var(--gold);font-size:1.15rem}@keyframes floatup{to{transform:translateY(-68px) scale(1.08);opacity:0}}
+.actions{display:flex;gap:9px;flex-wrap:wrap}.btn{border:1px solid #3d527b;background:#1a2946;color:var(--text);border-radius:9px;padding:10px 13px;font:inherit;font-size:.82rem;cursor:pointer;transition:background .15s,border-color .15s,transform .15s}.btn:hover{background:#23385d;border-color:var(--cyan)}.btn:active{transform:translateY(1px)}.btn:disabled{opacity:.35;cursor:not-allowed}.btn.primary{background:var(--cyan);border-color:var(--cyan);color:#071321;font-weight:850}.btn.primary:hover{background:#a4fff4}.btn.gold{border-color:#a8874a;color:var(--gold)}
+.progress{height:8px;background:#25314a;border-radius:99px;overflow:hidden;margin:10px 0}.progress>div{height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--cyan));border-radius:99px;transition:width .25s}
+.event{min-height:22px;margin:12px 0 0;color:var(--gold);font-size:.8rem}
+.tabs{display:flex;gap:7px;margin:17px 0 12px}.tabs .btn{flex:1;padding:9px 7px}.tabs .active{border-color:var(--cyan);color:var(--cyan);background:#63f5e312}
+#items{display:grid;gap:9px;max-height:610px;overflow:auto;padding-right:3px;scrollbar-color:#3c547c transparent;scrollbar-width:thin}
+.item{display:flex;align-items:center;gap:11px;padding:12px;background:#ffffff04;border:1px solid #2a3a5b;border-radius:11px;transition:border-color .15s,background .15s}.item:hover{border-color:#526d9c;background:#ffffff08}.ico{font-size:1.65rem;width:38px;text-align:center;flex-shrink:0}.desc{flex:1;min-width:0}.desc strong{display:block;font-size:.87rem}.desc small{display:block;color:var(--muted);font-size:.74rem;line-height:1.4;margin-top:4px}.buy{white-space:nowrap;font-size:.74rem;padding:9px}
+.log{height:100px;overflow:auto;background:#080e1b;border:1px solid #253451;border-radius:9px;padding:10px;font-size:.74rem;color:var(--muted);line-height:1.7;margin-top:12px}.log div:before{content:"› ";color:var(--cyan)}
+footer{text-align:center;color:#7183a5;font-size:.72rem;padding:0 15px 26px}
+@media(max-width:850px){main{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.world{height:280px}#items{max-height:none}}
+@media(max-width:430px){header{padding:20px 4vw 15px}.panel{padding:14px}.stats{gap:8px}.stat{padding:12px}.world{height:250px}.corebutton{width:108px;height:108px}.item{gap:7px;padding:9px}.ico{width:30px;font-size:1.4rem}.buy{padding:8px 9px;font-size:.7rem}.tag{font-size:.6rem}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">WORLD <span>OF</span> TYCOON</div>
+  <div class="social-links" aria-label="Social Media">
+    <a class="social-btn tiktok" href="https://www.tiktok.com/@cristiano.winnen" target="_blank" rel="noopener noreferrer" aria-label="TikTok von cristiano.winnen"><span class="social-icon">♪</span> TikTok <span>@cristiano.winnen</span></a>
+    <a class="social-btn instagram" href="https://www.instagram.com/cristiano_1.8.08/" target="_blank" rel="noopener noreferrer" aria-label="Instagram von cristiano_1.8.08"><span class="social-icon">◎</span> Instagram <span>@cristiano_1.8.08</span></a>
+  </div>
+  <div class="tag">DIGITAL EMPIRE · BUILD 1.0</div>
+</header>
+<div class="wrap">
+  <section class="stats">
+    <div class="stat"><small>Deine Splitter</small><strong id="shards">0</strong></div>
+    <div class="stat"><small>Produktion / Sek.</small><strong id="rate">0</strong></div>
+    <div class="stat"><small>Power pro Klick</small><strong id="power">1</strong></div>
+    <div class="stat"><small>Welt-Level</small><strong id="worldLevel">SEED 01</strong></div>
+  </section>
+  <main>
+    <section class="panel">
+      <div class="panelhead"><div><div class="eyebrow">01 / Dein Imperium</div><h2>Der Ursprungskern</h2></div><div class="tag" id="stability">STABIL</div></div>
+      <p class="muted">Klicke auf den Kern, sammle digitale Splitter und baue aus einem winzigen Signal ein ganzes Universum.</p>
+      <div class="world" id="world">
+        <div class="ring"></div>
+        <button class="corebutton" id="core" aria-label="Energiekern aktivieren" title="Klicken, um Splitter zu sammeln">✦</button>
+        <div id="floatLayer"></div>
+        <div class="worldlabel"><span id="worldSeed">SEED 01 // ONLINE</span><span id="tapHint">KLICK +1</span></div>
+      </div>
+      <div class="actions">
+        <button class="btn primary" id="pulse">⚡ Impuls auslösen</button>
+        <button class="btn" id="save">⇩ Speichern</button>
+        <button class="btn gold" id="reboot" disabled>↻ Welt-Reboot</button>
+      </div>
+      <div class="progress"><div id="rebootBar"></div></div>
+      <div class="muted" id="rebootProgress">0 / 50.000 Gesamt-Splitter bis zum Reboot</div>
+      <div class="event" id="event" aria-live="polite">System bereit. Dein Tycoon wartet auf den ersten Klick.</div>
+      <div class="panelhead" style="margin-top:17px"><div><div class="eyebrow">Systemmeldungen</div><h2>Aktivitätsprotokoll</h2></div><span class="muted" id="bonus">+0% Bonus</span></div>
+      <div class="log" id="log" aria-live="polite"></div>
+    </section>
+    <section class="panel">
+      <div class="panelhead"><div><div class="eyebrow">02 / Expansion</div><h2>Dein Tech-Baum</h2></div><div class="tag" id="ownedCount">0 Upgrades</div></div>
+      <p class="muted">Investiere deine Splitter in Technologien. Jede Stufe erhöht deine Klickkraft oder produziert automatisch neue Ressourcen.</p>
+      <div class="tabs">
+        <button class="btn active" data-tab="all">Alle</button><button class="btn" data-tab="click">Klick</button><button class="btn" data-tab="auto">Auto</button>
+      </div>
+      <div id="items"></div>
+    </section>
+  </main>
+</div>
+<footer>WORLD OF TYCOON · Dein Imperium wird lokal in diesem Browser gespeichert.</footer>
+<script>
+(()=>{
+'use strict';
+const $=id=>document.getElementById(id);
+const defs=[
+{id:'needle',name:'Pixel-Nadel',icon:'🪡',tab:'click',base:15,tap:1,rate:0,desc:'Ein präziser Datenstich für stärkere Klicks.'},
+{id:'moss',name:'Datenmoos',icon:'🌱',tab:'auto',base:35,tap:0,rate:0.7,desc:'Winzige Datenpflanzen erzeugen Splitter.'},
+{id:'drone',name:'Sammel-Drohne',icon:'🛸',tab:'auto',base:120,tap:0,rate:3,desc:'Sammelt verlorene Bits rund um die Uhr.'},
+{id:'mirror',name:'Spiegelprozess',icon:'🪞',tab:'click',base:260,tap:8,rate:0,desc:'Verdoppelt fast jeden deiner Impulse.'},
+{id:'rain',name:'Datenregen',icon:'🌧️',tab:'auto',base:650,tap:0,rate:14,desc:'Lässt Ressourcen aus der Cloud regnen.'},
+{id:'worm',name:'Zeitwurm',icon:'🪱',tab:'auto',base:1800,tap:0,rate:45,desc:'Knabbert Abkürzungen durch die Zeit.'},
+{id:'moon',name:'Mond-Server',icon:'🌙',tab:'auto',base:5200,tap:0,rate:135,desc:'Ein stilles Rechenzentrum im Orbit.'},
+{id:'singularity',name:'Singularität',icon:'🕳️',tab:'click',base:13000,tap:120,rate:220,desc:'Verdichtet Raum zu einem Klick.'},
+{id:'dream',name:'Traum-Compiler',icon:'💭',tab:'auto',base:36000,tap:0,rate:900,desc:'Verwandelt ungenutzte Träume in Daten.'},
+{id:'tree',name:'Weltbaum',icon:'🌌',tab:'auto',base:95000,tap:0,rate:2600,desc:'Ein lebendes Netzwerk zwischen Realitäten.'}
+];
+let shards=0,total=0,echoes=0,owned=Object.fromEntries(defs.map(u=>[u.id,0]));
+let activeTab='all',last=performance.now(),lastRender=0,lastSave=0,autoSaveTimer=0;
+const fmt=n=>{if(!Number.isFinite(n))return'∞';if(n<1000)return n.toLocaleString('de-DE',{maximumFractionDigits:1});const s=['Tsd.','Mio.','Mrd.','Bio.','Brd.','Trd.','Qdr.','Qnt.'];let i=-1;while(n>=1000&&i<s.length-1){n/=1000;i++;}return n>=1000?n.toExponential(2):n.toLocaleString('de-DE',{maximumFractionDigits:2})+' '+s[i];};
+const mult=()=>1+echoes*.25;
+const tapPower=()=> (1+defs.reduce((sum,u)=>sum+owned[u.id]*u.tap,0))*mult();
+const rate=()=>defs.reduce((sum,u)=>sum+owned[u.id]*u.rate,0)*mult();
+const price=u=>Math.floor(u.base*Math.pow(1.19,owned[u.id]));
+function log(text){const line=document.createElement('div');line.textContent=new Date().toLocaleTimeString('de-DE')+' '+text;$('log').prepend(line);while($('log').children.length>24)$('log').lastChild.remove();}
+function gain(n){if(!Number.isFinite(n)||n<=0)return;shards+=n;total+=n;}
+function popup(x,y,text,crit=false){const el=document.createElement('span');el.className='float'+(crit?' crit':'');el.textContent=text;el.style.left=x+'px';el.style.top=y+'px';$('floatLayer').append(el);el.addEventListener('animationend',()=>el.remove(),{once:true});}
+function bonusEvent(){const n=Math.max(10,rate()*12+tapPower()*5);gain(n);$('event').textContent='GLITCH GEFUNDEN! +'+fmt(n)+' Bonus-Splitter.';log('Glitch-Bonus: +'+fmt(n)+' Splitter.');}
+function tap(e){const n=tapPower()*(Math.random()<.04?3:1);gain(n);const r=$('world').getBoundingClientRect();popup(Math.max(8,Math.min(r.width-100,(e.clientX||r.left+r.width/2)-r.left)),Math.max(12,(e.clientY||r.top+r.height/2)-r.top),'+ '+fmt(n),n>tapPower());if(Math.random()<.035)bonusEvent();render();if(shards>0&&shards%100<tapPower())save(false);}
+function buy(id){const u=defs.find(x=>x.id===id),p=price(u);if(shards<p)return;shards-=p;owned[id]++;$('event').textContent=u.name+' installiert. Dein Imperium wächst.';log('Upgrade installiert: '+u.name+' · Level '+owned[id]+'.');render();save(false);}
+function renderItems(){const root=$('items');const fragment=document.createDocumentFragment();defs.filter(u=>activeTab==='all'||u.tab===activeTab).forEach(u=>{const p=price(u),row=document.createElement('div');row.className='item';const icon=document.createElement('div');icon.className='ico';icon.textContent=u.icon;const desc=document.createElement('div');desc.className='desc';const title=document.createElement('strong');title.textContent=u.name;const detail=document.createElement('small');detail.textContent=u.desc+' · Level '+owned[u.id]+' · '+(u.tap?('+'+fmt(u.tap)+' Klickkraft'):'+'+fmt(u.rate)+' / Sek.');const cost=document.createElement('small');cost.textContent='Kosten: '+fmt(p)+' Splitter';desc.append(title,detail,cost);const btn=document.createElement('button');btn.className='btn buy';btn.textContent='Kaufen';btn.disabled=shards<p;btn.addEventListener('click',()=>buy(u.id));row.append(icon,desc,btn);fragment.append(row);});root.replaceChildren(fragment);}
+function render(){ $('shards').textContent=fmt(shards);$('rate').textContent=fmt(rate());$('power').textContent=fmt(tapPower());$('worldLevel').textContent='SEED '+String(1+Math.floor(total/1000)).padStart(2,'0');$('worldSeed').textContent='SEED '+String(1+Math.floor(total/1000)).padStart(2,'0')+' // ONLINE';$('tapHint').textContent='KLICK +'+fmt(tapPower());$('stability').textContent=echoes?'ECHO '+echoes:'STABIL';$('reboot').disabled=total<50000;$('rebootBar').style.width=Math.min(100,total/50000*100)+'%';$('rebootProgress').textContent=fmt(total)+' / 50.000 Gesamt-Splitter bis zum Reboot';$('bonus').textContent='+'+(echoes*25)+'% Bonus';$('ownedCount').textContent=defs.reduce((s,u)=>s+owned[u.id],0)+' Upgrades';renderItems();}
+function save(show=true){try{localStorage.setItem('worldOfTycoonSave',JSON.stringify({shards,total,echoes,owned}));if(show){$('event').textContent='Spielstand gespeichert ✓';log('Spielstand gespeichert.');}}catch(e){$('event').textContent='Speichern ist in diesem Browser nicht verfügbar.';}}
+function load(){try{const s=JSON.parse(localStorage.getItem('worldOfTycoonSave')||'null');if(!s)return;shards=Math.max(0,Number(s.shards)||0);total=Math.max(0,Number(s.total)||0);echoes=Math.max(0,Number(s.echoes)||0);defs.forEach(u=>owned[u.id]=Math.max(0,Math.floor(Number((s.owned||{})[u.id])||0)));log('Gespeicherter Spielstand geladen.');}catch(e){log('Spielstand konnte nicht geladen werden.');}}
+$('core').addEventListener('click',tap);
+$('pulse').addEventListener('click',()=>{const cost=Math.max(25,Math.ceil(tapPower()*8));if(shards<cost){$('event').textContent='Zu wenig Splitter für den Impuls ('+fmt(cost)+').';return;}shards-=cost;const n=Math.max(1,rate()*20+tapPower()*15);gain(n);$('event').textContent='IMPULS! +'+fmt(n)+' Splitter.';log('Impuls ausgelöst: +'+fmt(n)+' Splitter.');render();});
+document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>{activeTab=b.dataset.tab;document.querySelectorAll('[data-tab]').forEach(x=>x.classList.toggle('active',x===b));renderItems();}));
+$('save').addEventListener('click',()=>save(true));
+$('reboot').addEventListener('click',()=>{if(total<50000)return;const n=Math.floor(total/50000);if(!confirm('Welt-Reboot starten? Du erhältst '+n+' Echo(s), verlierst Splitter und Upgrades, behältst aber den permanenten Bonus.'))return;echoes+=n;shards=0;total=0;defs.forEach(u=>owned[u.id]=0);$('event').textContent='REBOOT ERFOLGREICH. Eine neue Realität wartet.';log('Welt-Reboot abgeschlossen. Echos: '+echoes+'.');render();save(false);});
+load();render();
+// Ein zentraler Animationsloop folgt der Browser-Bildwiederholrate.
+// UI-Updates werden begrenzt, damit viele Ressourcen nicht unnötig oft DOM-Elemente neu aufbauen.
+function frame(now){const dt=Math.min((now-last)/1000,.25);last=now;const production=rate()*dt;if(production>0)gain(production);if(now-lastRender>120){if(production>0)render();lastRender=now;}if(now-lastSave>10000){save(false);lastSave=now;}requestAnimationFrame(frame);}
+requestAnimationFrame(frame);
+window.addEventListener('beforeunload',()=>save(false));
+})();
+</script>
+</body>
+</html>
